@@ -1,9 +1,11 @@
 package br.com.edu.spring_boot_essentials.controller;
 
+import br.com.edu.spring_boot_essentials.database.model.AvaliacoesFisicasEntity;
 import br.com.edu.spring_boot_essentials.database.model.ExerciciosEntity;
 import br.com.edu.spring_boot_essentials.dto.AlunoDto;
 import br.com.edu.spring_boot_essentials.dto.ExercicioDto;
 import br.com.edu.spring_boot_essentials.exception.BadRequestException;
+import br.com.edu.spring_boot_essentials.exception.NotFoundException;
 import br.com.edu.spring_boot_essentials.service.AlunosService;
 import br.com.edu.spring_boot_essentials.service.ExerciciosService;
 import jakarta.validation.Valid;
@@ -27,4 +29,13 @@ public class AlunosController {
     public void criarAluno(@Valid @RequestBody AlunoDto alunoDto) throws BadRequestException {
         alunosService.criarAluno(alunoDto);
     }
+
+    @GetMapping("/{alunoId}/avaliacao")
+    @ResponseStatus(HttpStatus.OK)
+    public AvaliacoesFisicasEntity getAvaliacaoFisica(@PathVariable Integer alunoId) throws NotFoundException {
+        return alunosService.getAlunoAvaliacao(alunoId);
+    }
+
+
+
 }

@@ -1,9 +1,11 @@
 package br.com.edu.spring_boot_essentials.service;
 
 import br.com.edu.spring_boot_essentials.database.model.AlunosEntity;
+import br.com.edu.spring_boot_essentials.database.model.AvaliacoesFisicasEntity;
 import br.com.edu.spring_boot_essentials.database.repository.IAlunosRepository;
 import br.com.edu.spring_boot_essentials.dto.AlunoDto;
 import br.com.edu.spring_boot_essentials.exception.BadRequestException;
+import br.com.edu.spring_boot_essentials.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,5 +28,18 @@ public class AlunosService {
                         .email(alunoDto.getEmail())
                 .build());
 
+    }
+
+    public AvaliacoesFisicasEntity getAlunoAvaliacao(Integer alunoId) throws NotFoundException {
+        AlunosEntity aluno =alunosRepository.findByIdFetch(alunoId)
+                .orElseThrow(() -> new NotFoundException("Aluno não encontrado"));
+
+        AvaliacoesFisicasEntity avaliacao = aluno.getAvaliacaoFisica();
+
+        if(avaliacao == null){
+            throw new NotFoundException("Avaliação não encontrada");
+        }
+
+        return avaliacao;
     }
 }
