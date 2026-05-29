@@ -7,10 +7,13 @@ import br.com.edu.spring_boot_essentials.database.repository.IAlunosRepository;
 import br.com.edu.spring_boot_essentials.database.repository.IAvaliacoesFisicasRepository;
 import br.com.edu.spring_boot_essentials.database.repository.IExerciciosRepository;
 import br.com.edu.spring_boot_essentials.dto.AvaliacaoFisicaDto;
+import br.com.edu.spring_boot_essentials.dto.AvaliacoesFisicasProjection;
 import br.com.edu.spring_boot_essentials.dto.ExercicioDto;
 import br.com.edu.spring_boot_essentials.exception.BadRequestException;
 import br.com.edu.spring_boot_essentials.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -41,6 +44,13 @@ public class AvaliacaoFisicaService {
         alunosRepository.save(aluno);
     }
 
+    public List<AvaliacoesFisicasProjection> getAllAvaliacoes(){
+        return avaliacoesFisicasRepository.getAllAvaliacoes();
+    }
+
+    public Page<AvaliacoesFisicasProjection> getAllAvaliacoesPageable(Integer page, Integer size){
+        return avaliacoesFisicasRepository.getAllAvaliacoesPage(PageRequest.of(page,size));
+    }
 
 
 
