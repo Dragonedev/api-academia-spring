@@ -52,6 +52,27 @@ public class AvaliacaoFisicaService {
         return avaliacoesFisicasRepository.getAllAvaliacoesPage(PageRequest.of(page,size));
     }
 
+    public void deleteAvaliacao(Integer alunoId) throws NotFoundException{
+
+        AlunosEntity aluno = alunosRepository.findById(alunoId)
+                .orElseThrow(() -> new NotFoundException("Aluno não encontrado"));
+
+        if (aluno.getAvaliacaoFisica() != null) {
+
+            AvaliacoesFisicasEntity avaliacao = aluno.getAvaliacaoFisica();
+
+            aluno.setAvaliacaoFisica(null);
+
+            alunosRepository.save(aluno);
+
+            avaliacoesFisicasRepository.delete(avaliacao);
+
+        } else {
+            throw new NotFoundException("Aluno não possui avaliação física");
+        }
+
+    }
+
 
 
 }

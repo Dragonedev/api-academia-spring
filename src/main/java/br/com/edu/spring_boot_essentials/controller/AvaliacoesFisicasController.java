@@ -44,6 +44,14 @@ public class AvaliacoesFisicasController {
         return avaliacaoFisicaService.getAllAvaliacoesPageable(page, size);
     }
 
+    @DeleteMapping("aluno/{alunoId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteAvaliacao(@PathVariable Integer alunoId) throws NotFoundException{
+        avaliacaoFisicaService.deleteAvaliacao(alunoId);
+
+    }
+
+
 
 
 }

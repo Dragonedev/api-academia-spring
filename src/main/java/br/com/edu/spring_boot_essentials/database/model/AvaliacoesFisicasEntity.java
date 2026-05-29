@@ -7,13 +7,13 @@ import lombok.*;
 import java.math.BigDecimal;
 
 @Entity
-@Table(name = "avaliações físicas")
+@Table(name = "avaliacoes_fisicas")
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Setter
 @Builder
-@JsonIgnoreProperties({"hibernateLazyIntializer"})
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 
 public class AvaliacoesFisicasEntity {
 
