@@ -37,7 +37,7 @@ public interface IAvaliacoesFisicasRepository extends JpaRepository<AvaliacoesFi
         INNER JOIN alunos a ON a.avaliacao_fisica_id = af.id
         """,
     countQuery = """
-        SELECT COUNT(*)
+        SELECT COUNT(af.id)
         FROM avaliacoes_fisicas af
         INNER JOIN alunos a ON a.avaliacao_fisica_id = af.id
         """)
