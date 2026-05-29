@@ -1,5 +1,6 @@
 package br.com.edu.spring_boot_essentials.controller;
 
+import br.com.edu.spring_boot_essentials.database.model.AlunosEntity;
 import br.com.edu.spring_boot_essentials.database.model.AvaliacoesFisicasEntity;
 import br.com.edu.spring_boot_essentials.database.model.ExerciciosEntity;
 import br.com.edu.spring_boot_essentials.dto.AlunoDto;
@@ -28,6 +29,12 @@ public class AlunosController {
     @ResponseStatus(HttpStatus.CREATED)
     public void criarAluno(@Valid @RequestBody AlunoDto alunoDto) throws BadRequestException {
         alunosService.criarAluno(alunoDto);
+    }
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<AlunosEntity> findAll(){
+        return alunosService.findAll();
     }
 
     @GetMapping("/{alunoId}/avaliacao")

@@ -9,6 +9,8 @@ import br.com.edu.spring_boot_essentials.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class AlunosService {
@@ -30,6 +32,9 @@ public class AlunosService {
 
     }
 
+    public List<AlunosEntity> findAll(){
+        return alunosRepository.findAll();
+    }
     public AvaliacoesFisicasEntity getAlunoAvaliacao(Integer alunoId) throws NotFoundException {
         AlunosEntity aluno =alunosRepository.findByIdFetch(alunoId)
                 .orElseThrow(() -> new NotFoundException("Aluno não encontrado"));

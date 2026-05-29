@@ -1,5 +1,6 @@
 package br.com.edu.spring_boot_essentials.database.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,6 +24,7 @@ public class TreinosEntity {
     private String nome;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "aluno_id")
     private AlunosEntity aluno;
 
